@@ -1,5 +1,12 @@
 # Changelog
 
+## 58.0.16
+
+### Patch Changes
+
+- [iOS] Fix the community `BottomSheet` clipping its content when the sheet is narrower than the window, as on iPhone Duo. When the sheet sized itself to its content, the content was pinned to the window width and centered in the sheet, so its leading edge was cut off. The content now takes its width from the sheet and its height from the content. `presentationSizing` takes a `fitted` option (`{ horizontal, vertical }`) to fit a sheet to its content on one axis only. ([#51319](https://github.com/expo/expo/pull/51319) by [@intergalacticspacehighway](https://github.com/intergalacticspacehighway))
+- [Android] Fix a numeric `width()` modifier crashing the app on launch with `FieldCastException: Cannot cast value for field 'width'` since the `IntrinsicSize` support added in 57.0.22 / 58.0.9. JS numbers reach the modifier record as `Double`, which matched neither branch of `Either<Int, IntrinsicSizeType>`; the field is now `Either<Double, IntrinsicSizeType>`, so numeric widths convert again and `width(IntrinsicSize.Min|Max)` keeps working. ([#51322](https://github.com/expo/expo/pull/51322) by [@expo-bot](https://github.com/expo-bot))
+
 ## 58.0.15
 
 ### Patch Changes
